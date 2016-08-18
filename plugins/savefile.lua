@@ -25,7 +25,7 @@ load_document(msg.reply_id, savefile, {msg=msg,name=name,adress=adress})
       end
       
          if not is_sudo(msg) then
-           return "You Are Not Solid :/"
+           return "تو ارماني؟"
          end
 end
 end
