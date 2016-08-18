@@ -1,16 +1,16 @@
 do
 
 local function run(msg, matches)
-      local text = "Blaster bot V 2.4.1\n for all people self bot \n not open source:/"
-  if matches[1]:lower() == 'beyondself' or 'version' or 'ver' or 'git' then --change this with anything you want
+      local text = "Arman self Bot Version 1.4"
+  if matches[1]:lower() == 'arman' or 'version' or 'ver' or 'git' or 'Arman' then
 reply_msg(msg.id, text, ok_cb, false)
   end
 end
 
 return {
   patterns = {
-    "^[!/#]([Bb]laster)$",
-    "^([Bb]laster)$",
+    "^[!/#]([Aa]rman)$",
+    "^([Aa]rman)$",
     "^[!/#]([Vv]ersion)$",
     "^([Vv]ersion)$",
     "^([Gg]it)$",
