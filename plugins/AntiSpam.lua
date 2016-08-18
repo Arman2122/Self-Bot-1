@@ -49,7 +49,7 @@ local function pre_process(msg)
   local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
     --Check if flood is one or off
-    if data[tostring(msg.to.id)]['settings']['flood'] == 'no' then
+    if data[tostring(msg.to.id)]['settings']['flood'] == 'yes' then
       return msg
     end
   end
@@ -107,7 +107,7 @@ local function pre_process(msg)
           send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." از همه گروه ها سيكتير شد (spamming)")
           local log_group = 1 --set log group caht id
           --send it to log group
-          send_large_msg("chat#id"..log_group, "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." اين كوني از همه گروه ها سيكتير شد ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)")
+          send_large_msg("chat#id"..log_group, "يه كوني [ "..name.." ] ( @"..username.." )"..msg.from.id.." اين كوني از همه گروه ها سيكتير شد ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)")
         end
       end
       kicktable[user] = true
