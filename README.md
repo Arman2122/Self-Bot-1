@@ -1,5 +1,5 @@
 # Arman Self Bot Version 1.0
-**ايدي خودم[Arman](https://telegram.me/L_u_a
+**ايدي خودم[Arman](https://telegram.me/L_u_a)**
 
 **An Fun bot based on [TeleSeed](https://github.com/SEEDTEAM/TeleSeed)**
 
