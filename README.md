@@ -1,9 +1,7 @@
-# Beyond Self Bot Version 1.0
+# Arman Self Bot Version 1.0
+**ايدي خودم[Arman](https://telegram.me/L_u_a
 
-**An Fun bot based on [TeleSeed](https://github.com/SEEDTEAM/TeleSeed) licensed under the [GNU General Public License](https://github.com/BeyondTeam/Self-Bot/blob/master/LICENSE)**.
-
-#Don't Forget Star To Us :)
-#یادتون نره بهمون ستاره بدید :)
+**An Fun bot based on [TeleSeed](https://github.com/SEEDTEAM/TeleSeed)**
 
 # نحوه نصب کردن بر روی سرور
 
@@ -50,17 +48,4 @@ tmux new-session -s script "bash beyond.sh -t"
 * * *
 
 # Special Thx To :
-###Seed Team
-
-###And All My Friends :D
-
-#Team Channel :
-
-#[@BeyondTeam](https://telegram.me/BeyondTeam)
-
-###اگر مشکلی داشتید به لینک های زیر بیاید و مطرح کنید
-#[TeleBeyond Support](https://telegram.me/joinchat/DH-5lD7jQzw--m36LgqOVA)
-
-#[Api-TeleBeyond Development](https://telegram.me/joinchat/CVyJuz6_PJBUrk_w--1JXw)
-
-#موفق باشید -_-
+###Seed Team😐
