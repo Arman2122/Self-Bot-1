@@ -16,7 +16,7 @@ return {
     "/keep calm font text: ساخت لوگو",
   },
   patterns = {
-   "^(keep) (.+) (.+) (.+)$",
+   "^(keep) (.+) (.+)$",
   },
   run = run
 }
