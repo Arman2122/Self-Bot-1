@@ -19,9 +19,19 @@
 # It should be able to recover the telegram bot in any case telegram-cli crashes, freezes or whatever.
 # This script works by tracing ctxt swithes value in kernel procces at a $RELOADTIME 
 # So it can detect any kind of kernel interruption with the procces and reload the bot.
-
-
-#Arman
+#
+#--------------------------------------------------
+#--      ____  ____ _____                        --
+#--     |    \|  _ )_   _|___ ____   __  __      --
+#--     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
+#--     |____/|____/ |_|\____/\_____|_/\/\_|     --
+#--                                              --
+#--------------------------------------------------
+#--                                              --
+#--       Developers: @Josepdal & @MaSkAoS       --
+#--     Support: @Skneos,  @iicc1 & @serx666     --
+#--                                              --
+#--------------------------------------------------
 
 
 # Some script variables
@@ -59,7 +69,7 @@ cat << EOF
  
 EOF
 echo -e "                \e[100m                Steady script           \e[00;37;40m"
-echo -e "               \e[01;34m                    by Arman / @L_u_a                 \e[00;37;40m"
+echo -e "               \e[01;34m                    by iicc                \e[00;37;40m"
 echo ""
 cat << EOF
  $bld$f1▄ ▀▄   ▄▀ ▄   $f2 ▄▄▄████▄▄▄    $f3  ▄██▄     $f4▄ ▀▄   ▄▀ ▄   $f5 ▄▄▄████▄▄▄    $f6  ▄██▄  $rst
@@ -74,7 +84,7 @@ sleep 1.2
 # Checking if the bot folder is in HOME
 echo -e "$bld$f4 CHECKING INSTALLED BOT...$rst"
 sleep 0.5
-ls ../ | grep $BOT > /dev/null
+ls ../ | grep $BOT 2>/dev/null >/dev/null
 if [ $? != 0 ]; then
   echo -e "$f1 ERROR: BOT: $BOT NOT FOUND IN YOUR HOME DIRECTORY$rst"
   sleep 4
@@ -85,11 +95,11 @@ sleep 0.5
 
 
 echo ""
-echo -e "\033[38;5;208m @L_u_a-----@L_u_a\033[0;00m"
-echo -e "\033[38;5;208m @L_u_a-----@L_u_a\033[0;00m"
-echo -e "\033[38;5;208m @L_u_a-----@L_u_a\033[0;00m"
-echo -e "\033[38;5;208m @L_u_a-----@L_u_a\033[0;00m"
-echo -e "\033[38;5;208m @L_u_a-----@L_u_a\033[0;00m"
+echo -e "\033[38;5;208m      ____  ____ _____                        \033[0;00m"
+echo -e "\033[38;5;208m     |    \|  _ )_   _|___ ____   __  __      \033[0;00m"
+echo -e "\033[38;5;208m     | |_  )  _ \ | |/ .__|  _ \_|  \/  |     \033[0;00m"
+echo -e "\033[38;5;208m     |____/|____/ |_|\____/\_____|_/\/\_|     \033[0;00m"
+echo -e "\033[38;5;208m                                              \033[0;00m"
 
 sleep 1.5
 echo -e "$bld$f4 CHECKING PROCESSES...$rst"
@@ -105,7 +115,7 @@ sleep 0.9
 # Opening new tmux in a daemon
 echo -e "$bld$f4 ATTACHING TMUX AS DAEMON...$rst"
 # It is recommended to clear cli status always before starting the bot
-rm ../.telegram-cli/state  > /dev/null 
+rm ../.telegram-cli/state 2>/dev/null
 # Nested TMUX sessions trick 
 TMUX= tmux new-session -d -s $BOT "./launch.sh"
 sleep 1.3
@@ -137,7 +147,7 @@ while true; do
 		if [ $I -ge 3 ]; then
 			kill $CLIPID
 			tmux kill-session -t $BOT
-			rm ../.telegram-cli/state  > /dev/null 
+			rm ../.telegram-cli/state 2>/dev/null
 			NONVOLUNTARY=0
 			NONVOLUNTARYCHECK=0
 			VOLUNTARY=0
@@ -158,7 +168,7 @@ while true; do
 		BAD=$(( $BAD + 1 ))
 		sleep 1
 		
-		rm ../.telegram-cli/state  > /dev/null 
+		rm ../.telegram-cli/state 2>/dev/null 
 
 		kill $CLIPID
 		tmux kill-session -t $BOT
@@ -175,6 +185,12 @@ while true; do
 			exit 1
 		fi
 
+	fi
+	
+	# Clear cache after 10h
+	if [ "$OK" == 2400 ]; then
+		sync
+		sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 	fi
 	
 	VOLUNTARY=`echo $VOLUNTARYCHECK`
@@ -211,7 +227,7 @@ cat << EOF
  
 EOF
 echo -e "                \e[100m                Steady script           \e[00;37;40m"
-echo -e "               \e[01;34m                    by Arman                 \e[00;37;40m"
+echo -e "               \e[01;34m                    by iicc                \e[00;37;40m"
 echo ""
 cat << EOF
  $bld$f1▄ ▀▄   ▄▀ ▄   $f2 ▄▄▄████▄▄▄    $f3  ▄██▄     $f4▄ ▀▄   ▄▀ ▄   $f5 ▄▄▄████▄▄▄    $f6  ▄██▄  $rst
@@ -226,7 +242,7 @@ sleep 1.3
 # Checking if the bot folder is in HOME
 echo -e "$bld$f4 CHECKING INSTALLED BOT...$rst"
 sleep 0.5
-ls ../ | grep $BOT > /dev/null
+ls ../ | grep $BOT 2>/dev/null >/dev/null
 if [ $? != 0 ]; then
   echo -e "$f1 ERROR: BOT: $BOT NOT FOUND IN YOUR HOME DIRECTORY$rst"
   sleep 4
@@ -237,11 +253,12 @@ sleep 0.5
 
 
 echo ""
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @cruel_channel \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
+echo -e "\033[38;5;208m      ____  ____ _____                        \033[0;00m"
+echo -e "\033[38;5;208m     |    \|  _ )_   _|___ ____   __  __      \033[0;00m"
+echo -e "\033[38;5;208m     | |_  )  _ \ | |/ .__|  _ \_|  \/  |     \033[0;00m"
+echo -e "\033[38;5;208m     |____/|____/ |_|\____/\_____|_/\/\_|     \033[0;00m"
+echo -e "\033[38;5;208m                                              \033[0;00m"
+
 # Starting preliminar setup
 sleep 1.5
 echo -e "$bld$f4 CHECKING PROCESSES...$rst"
@@ -284,7 +301,7 @@ done
 # I had some weird errors, so I had to do this silly fix:
 SCREENPID1=`cat SC1`
 SCREENPID2=`cat SC2`
-rm SC1 SC2 >/dev/null
+rm SC1 SC2 2>/dev/null
 
 sleep 0.7
 CLIPID=`ps -e | grep telegram-cli | sed 's/^[[:space:]]*//' | cut -f 1 -d" "`
@@ -310,7 +327,7 @@ sleep 1
 # Opening new screen in a daemon
 echo -e "$bld$f4 ATTACHING SCREEN AS DAEMON...$rst"
 # Better to clear cli status before
-rm ../.telegram-cli/state  > /dev/null 
+rm ../.telegram-cli/state 2>/dev/null
 screen -d -m bash launch.sh
 
 sleep 1.3
@@ -364,11 +381,21 @@ sleep 5
 	echo ""
 	
 	cat /proc/$CLIPID/task/$CLIPID/status > CHECK
+	if [ $? != 0 ]; then
+		I=$(( $I + 1 ))
+		if [ $I -ge 3 ]; then
+			rm ../.telegram-cli/state 2>/dev/null
+			NONVOLUNTARY=0
+			NONVOLUNTARYCHECK=0
+			VOLUNTARY=0
+			VOLUNTARYCHECK=0
+		fi
+	else
+		I=1
+	fi
 	VOLUNTARYCHECK=`grep voluntary CHECK | head -1 | cut -f 2 -d":" | sed 's/^[[:space:]]*//'`
 	NONVOLUNTARYCHECK=`grep nonvoluntary CHECK | cut -f 2 -d":" | sed 's/^[[:space:]]*//'`
-	#echo -e "NONVOLUNTARYCHECK CTXT SWITCHES: $NONVOLUNTARYCHECK"
-	#echo -e "NONVOLUNTARY CTXT SWITCHES: $NONVOLUNTARY"
-	
+
 	if [ $NONVOLUNTARY != $NONVOLUNTARYCHECK ] || [ $VOLUNTARY != $VOLUNTARYCHECK ]; then
 		echo -e "$f5 BOT RUNNING!$rst"
 		OK=$(( $OK + 1 ))
@@ -378,7 +405,7 @@ sleep 5
 		BAD=$(( $BAD + 1 ))
 		sleep 1
 		
-		rm ../.telegram-cli/state  > /dev/null 
+		rm ../.telegram-cli/state 2>/dev/null
 
 		kill $CLIPID
 		kill $SCREEN
@@ -409,6 +436,12 @@ sleep 5
 		
 	fi
 	
+	# Clear cache after 10h
+	if [ "$OK" == 2400 ]; then
+		sync
+		sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+	fi
+	
 	VOLUNTARY=`echo $VOLUNTARYCHECK`
 	NONVOLUNTARY=`echo $NONVOLUNTARYCHECK`
 	sleep $RELOADTIME
@@ -427,7 +460,7 @@ echo "Bot running in the backgroud with TMUX"
 echo ""
 echo -e "\e[0m"
 sleep 3
-tmux kill-session script
+tmux kill-session script 2>/dev/null
 exit 1
 }
 
@@ -503,15 +536,14 @@ while getopts ":tsTSih" opt; do
 	i)
 	echo -e "\e[1m"
 	echo -e ""
-	echo "steady.sh bash script v1 CRUEL 2016 GPMOD" >&2
+	echo "steady.sh bash script v1.2 iicc 2016 DBTeam" >&2
 	echo ""
 	echo -e "\e[0m"
-
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
-echo -e "\033[38;5;208m @L_u_a    :)      @L_u_a \033[0;00m"
+echo -e "\033[38;5;208m      ____  ____ _____                        \033[0;00m"
+echo -e "\033[38;5;208m     |    \|  _ )_   _|___ ____   __  __      \033[0;00m"
+echo -e "\033[38;5;208m     | |_  )  _ \ | |/ .__|  _ \_|  \/  |     \033[0;00m"
+echo -e "\033[38;5;208m     |____/|____/ |_|\____/\_____|_/\/\_|     \033[0;00m"
+echo -e "\033[38;5;208m                                              \033[0;00m"	
 echo ""
 	exit 1
       ;;
