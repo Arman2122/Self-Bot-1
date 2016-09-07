@@ -1,4 +1,4 @@
-﻿do
+do
 
 -- Returns the key (index) in the config.enabled_plugins table
 local function plugin_enabled( name )
@@ -22,28 +22,27 @@ local function plugin_exists( name )
 end
 
 local function list_all_plugins(only_enabled)
-  local tmp = '\n\n@BeyondTeam'
   local text = ''
   local nsum = 0
   for k, v in pairs( plugins_names( )) do
     --  ✔ enabled, ❌ disabled
-    local status = '/Disable➣'
+    local status = '❌'
     nsum = nsum+1
     nact = 0
     -- Check if is enabled
     for k2, v2 in pairs(_config.enabled_plugins) do
       if v == v2..'.lua' then 
-        status = '/Enable➣' 
+        status = '✔' 
       end
       nact = nact+1
     end
-    if not only_enabled or status == '/Enable➣' then
+    if not only_enabled or status == '✔' then
       -- get the name
       v = string.match (v, "(.*)%.lua")
       text = text..nsum..'.'..status..' '..v..' \n'
     end
   end
-  local text = text..'\n\n'..nsum..' plugins installed\n\n'..nact..' plugins enabled\n\n'..nsum-nact..' plugins disabled'..tmp
+  local text = text..'\n\n'..nsum..' plugins installed\n\n'..nact..' plugins enabled\n\n'..nsum-nact..' plugins disabled'
   return text
 end
 
@@ -52,24 +51,24 @@ local function list_plugins(only_enabled)
   local nsum = 0
   for k, v in pairs( plugins_names( )) do
     --  ✔ enabled, ❌ disabled
-    local status = '/Disable➣'
+    local status = '❌'
     nsum = nsum+1
     nact = 0
     -- Check if is enabled
     for k2, v2 in pairs(_config.enabled_plugins) do
       if v == v2..'.lua' then 
-        status = '/Enable➣' 
+        status = '✔' 
       end
       nact = nact+1
     end
-    if not only_enabled or status == '/Enable➣' then
+    if not only_enabled or status == '✔' then
       -- get the name
       v = string.match (v, "(.*)%.lua")
      -- text = text..v..'  '..status..'\n'
     end
   end
-  local text = text.."\nAll Plugins Reloaded\n\n"..nact.." Plugins Enabled\n"..nsum.." Plugins Installed\n\n@BeyondTeam"
-return text
+  local text = text..'\nPlugins Reloaded !\n\n'..nact..' plugins enabled\n'..nsum..' plugins installed'
+  return text
 end
 
 local function reload_plugins( )
@@ -153,7 +152,7 @@ end
 
 local function run(msg, matches)
   -- Show the available plugins 
-  if matches[1]:lower() == '!plist' and is_sudo(msg) then --after changed to moderator mode, set only sudo
+  if matches[1] == '!plugins' and is_sudo(msg) then --after changed to moderator mode, set only sudo
     return list_all_plugins()
   end
 
@@ -186,7 +185,7 @@ local function run(msg, matches)
     end
   -- Disable a plugin
   if matches[1] == '-' and is_sudo(msg) then --after changed to moderator mode, set only sudo
-    if matches[2] == 'plug' then
+    if matches[2] == 'plugins' then
     	return 'This plugin can\'t be disabled'
     end
     print("disable: "..matches[2])
@@ -197,7 +196,7 @@ local function run(msg, matches)
   if matches[1] == '*' and is_sudo(msg) then --after changed to moderator mode, set only sudo
     return reload_plugins(true)
   end
-  if matches[1]:lower() == 'reload' and is_sudo(msg) then --after changed to moderator mode, set only sudo
+  if matches[1] == 'reload' and is_sudo(msg) then --after changed to moderator mode, set only sudo
     return reload_plugins(true)
   end
 end
@@ -206,14 +205,14 @@ return {
   description = "Plugin to manage other plugins. Enable, disable or reload.", 
   usage = {
       moderator = {
-          "!plug disable [plugin] chat : disable plugin only this chat.",
-          "!plug enable [plugin] chat : enable plugin only this chat.",
+          "!plugins disable [plugin] chat : disable plugin only this chat.",
+          "!plugins enable [plugin] chat : enable plugin only this chat.",
           },
       sudo = {
-          "!plist : list all plugins.",
-          "!pl + [plugin] : enable plugin.",
-          "!pl - [plugin] : disable plugin.",
-          "!pl * : reloads all plugins." },
+          "!plugins : list all plugins.",
+          "!plugins enable [plugin] : enable plugin.",
+          "!plugins disable [plugin] : disable plugin.",
+          "!plugins reload : reloads all plugins." },
           },
   patterns = {
     "^!plist$",
@@ -221,7 +220,7 @@ return {
     "^!pl? (-) ([%w_%.%-]+)$",
     "^!pl? (+) ([%w_%.%-]+) (chat)",
     "^!pl? (-) ([%w_%.%-]+) (chat)",
-    "^!pl? (*)$",
+    "^!plugins? (*)$",
     "^[!/](reload)$"
     },
   run = run,
@@ -229,5 +228,5 @@ return {
   --privileged = true
 }
 
-end
-
+end 
+--by Arman @L_u_a
